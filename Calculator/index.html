@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.5.3/math.js" integrity="sha512-QpBz6wY4qixDKaK8OLULmv64VyRhNDuNP/yuQlx0O/6anqoyvOE4OtJ6bvp/19/6FUq/wXa8LLvYGNCzNXMH0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        body {
+            flex-direction: column;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+             font-family: Arial, sans-serif;
+        }
+
+        .calc-body {
+            padding: 20px;
+            background: gray;
+            display: block;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+        }
+
+        button {
+            cursor: pointer;
+            box-shadow: 4px 7px 4px rgba(0, 0, 0, 0.3);
+            border: none;
+            margin: 12px;
+            background-color: white;
+            font-size: 200%;
+            width: 4rem;
+            height: 4rem;
+        }
+
+        button:active {
+            box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.2);
+            transform: translateY(2px);
+            background-color: #f0f0f0;
+        }
+
+        #result {
+            font-size: 350%;
+            color: black;
+            background-color: #f0f0f0;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+            width: 22rem;
+            height: 5rem;
+            box-shadow: 4px 7px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        Simple Calculator
+    </h2>
+    <div class="calc-body">
+        <input type="text" id="result" disabled> <br>
+        <!-- Top row -->
+        <button onclick="clearInput()">C</button>
+        <button onclick="valueinput('%')">%</button>
+
+        <button onclick="backspace()" style="width: 10rem; background: rgb(255, 21, 21);">←</button>
+        <br>
+        <!-- Numbers and operators -->
+        <button onclick="valueinput('7')">7</button>
+        <button onclick="valueinput('8')">8</button>
+        <button onclick="valueinput('9')">9</button>
+        <button onclick="valueinput('/')">÷</button>
+        <br>
+        <button onclick="valueinput('6')">6</button>
+        <button onclick="valueinput('5')">5</button>
+        <button onclick="valueinput('4')">4</button>
+        <button onclick="valueinput('*')">x</button>
+        <br>
+        <button onclick="valueinput('3')">3</button>
+        <button onclick="valueinput('2')">2</button>
+        <button onclick="valueinput('1')">1</button>
+        <button onclick="valueinput('-')">-</button>
+        <br>
+        <button onclick="valueinput('0')">0</button>
+        <button onclick="valueinput('.')">.</button>
+        <button onclick="valueinput('+')">+</button>
+        <button onclick="calculate()" style="background-color: rgb(255, 149, 0);">=</button>
+    </div>
+
+
+
+
+
+
+    <script>
+        function valueinput(value) {
+            document.getElementById("result").value += value
+        }
+
+
+        function clearInput(clearInput) {
+            document.getElementById("result").value = " "
+        }
+
+
+        function backspace(backspace) {
+            const current = document.getElementById("result").value
+            document.getElementById("result").value = current.slice(0, -1)
+        }
+
+        function calculate(){
+            let Numbers = document.getElementById("result").value
+            const result = math.evaluate(Numbers)
+            document.getElementById("result").value = result
+        }
+    </script>
+</body>
+
+</html>
